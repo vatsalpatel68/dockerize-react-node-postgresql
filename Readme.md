@@ -31,6 +31,6 @@ CMD ["nginx", "-g", "daemon off;"]
 * When you go for production update change last line of Dockerfile to
 `CMD ["npm","run","start"]`
 
-## postgresql.
+## PostgreSQL
 
 * Docs of postgresql is inside postgres folder.
