@@ -1,6 +1,6 @@
 # React-node-postgresql-docker.
 
-## setup
+## Setup
  * Go to the directory and write command `docker-compose build`. (This command is required for the first time).
  * After that use `docker-compose up` for up the containers.
  * This Demo uses volumes. so, It will update on code change.
