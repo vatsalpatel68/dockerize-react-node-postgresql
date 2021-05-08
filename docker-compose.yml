@@ -1,0 +1,40 @@
+version: "3.1"
+
+services:
+  db:
+    build: ./postgres
+    volumes:
+      - ./postgres/Data:/var/lib/postgresql/data
+      - ./postgres/Docker:/Docker
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=sample
+    ports:
+      - 5432:5432
+
+  server:
+    build: ./server
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=user
+      - DB_PASSWORD=pass
+      - DB_PORT=5432
+      - DB_DATABASE=sample
+      - PORT=8000
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules # Remove this if you have pure JS dependencies
+    depends_on:
+      - db
+
+  app:
+    build: ./client
+    ports:
+      - 80:80
+      - 3000:3000
+    volumes:
+      - ./client/src:/app/src
+    restart: always
